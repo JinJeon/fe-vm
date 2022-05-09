@@ -20,8 +20,28 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "airbnb",
+      "prettier"
+    ],
+    "rules": {
+      "quotes": 0,
+      "react/function-component-definition": [
+        1,
+        {
+          "namedComponents": "arrow-function"
+        }
+      ],
+      "arrow-body-style": 0,
+      "react/react-in-jsx-scope": 0,
+      "comma-dangle": 0,
+      "linebreak-style": 0,
+      "operator-linebreak": 0,
+      "implicit-arrow-linebreak": 0,
+      "import/no-unresolved": "off",
+      "object-curly-newline": 0,
+      "react/jsx-boolean-value": 0
+    }
   },
   "browserslist": {
     "production": [
@@ -34,5 +54,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.2"
   }
 }
