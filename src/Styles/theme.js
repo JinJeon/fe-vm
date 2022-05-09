@@ -3,6 +3,7 @@ const colors = {
 	green: '#5e895e',
 	yellow: '#eacf56',
 	red: '#874141',
+	white: '#FFFEF4',
 };
 
 const padding = {
