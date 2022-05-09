@@ -6,6 +6,8 @@ const Normalize = createGlobalStyle`
 			color: ${colors.black};
 		`}
   .App {
+    width: 700px;
+    margin: 0 auto;
     font-family: 'IBM Plex Sans KR', sans-serif;
   }
 `;
