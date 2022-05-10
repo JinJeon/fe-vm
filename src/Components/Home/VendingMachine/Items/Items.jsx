@@ -1,4 +1,5 @@
 import itemsApi from 'Service/itemsApi';
+import getPriceType from 'Util/util';
 import { useEffect, useState } from 'react';
 import { ItemsDiv, ItemDiv, ItemNameDiv, ItmePriceDiv } from './Items.styled';
 
@@ -14,7 +15,7 @@ const Items = () => {
 		const list = array.map((item) => (
 			<ItemDiv key={item.id}>
 				<ItemNameDiv>{item.name}</ItemNameDiv>
-				<ItmePriceDiv>{item.price}</ItmePriceDiv>
+				<ItmePriceDiv>{getPriceType(item.price, true)}</ItmePriceDiv>
 			</ItemDiv>
 		));
 

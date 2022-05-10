@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import getPriceType from 'Util/util';
 
 const InputMoneyDiv = styled.div`
 	padding: 20px;
@@ -16,15 +17,17 @@ const InputMoneyValue = styled.input`
 `;
 
 const InputMoney = () => {
-	const [money, setMoney] = useState(0);
+	const unit = '원';
+	const [money, setMoney] = useState('');
 
 	const handleFocus = ({ target: { value } }) => {
 		if (value === '0') setMoney('');
 	};
 
 	const handleInput = ({ target: { value } }) => {
-		const rNumber = /[0-9]+$|^$/;
-		if (rNumber.test(value)) setMoney(value);
+		const rNumber = /^[0-9]+$|^$/;
+		const valueNumber = value.replaceAll(',', '');
+		if (rNumber.test(valueNumber)) setMoney(Number(valueNumber));
 	};
 
 	return (
@@ -32,11 +35,13 @@ const InputMoney = () => {
 			<InputMoneyValue
 				type="text"
 				placeholder="0"
+				maxLength="11"
 				onInput={handleInput}
+				onPaste={handleInput}
 				onFocus={handleFocus}
-				value={money}
+				value={getPriceType(money)}
 			/>
-			원
+			{unit}
 		</InputMoneyDiv>
 	);
 };
