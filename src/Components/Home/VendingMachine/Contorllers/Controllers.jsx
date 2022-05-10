@@ -1,11 +1,16 @@
-import styled from 'styled-components';
-
-const ControllersDiv = styled.div`
-	flex: 1 1 0;
-`;
+import ControllersDiv from './Controllers.styled';
+import Returning from './Returning';
+import InputMoney from './InputMoney';
+import Messages from './Messages';
 
 const Controllers = () => {
-	return <ControllersDiv>컨트롤러 위치</ControllersDiv>;
+	return (
+		<ControllersDiv>
+			<InputMoney />
+			<Returning />
+			<Messages />
+		</ControllersDiv>
+	);
 };
 
 export default Controllers;

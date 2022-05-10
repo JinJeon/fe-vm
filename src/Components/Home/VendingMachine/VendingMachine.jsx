@@ -8,7 +8,7 @@ const VendingMachineDiv = styled.div`
 		justify-content: space-between;
 		background-color: ${colors.yellow};
 		margin: 0 auto;
-		margin-top: 20px;
+		margin-top: 40px;
 		width: 700px;
 		border: ${colors.black} solid 2px;
 		border-radius: 10px;

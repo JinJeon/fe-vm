@@ -5,7 +5,6 @@ const HomeDiv = styled.div`
 `;
 
 const NavigatorDiv = styled.div`
-	padding-top: 20px;
 	overflow: auto;
 	margin: 0 auto;
 	> div {
