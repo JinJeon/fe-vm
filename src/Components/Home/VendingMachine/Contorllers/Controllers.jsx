@@ -1,6 +1,6 @@
 import ControllersDiv from './Controllers.styled';
 import Returning from './Returning';
-import InputMoney from './InputMoney';
+import InputMoney from './InputMoney/InputMoney';
 import Messages from './Messages';
 
 const Controllers = () => {
