@@ -1,17 +1,11 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import CoinsContext from 'Components/Home/CoinsContext';
 import itemsApi from 'Service/itemsApi';
-import { getPriceType } from 'Util/util';
-import { ItemsDiv, ItemDiv, ItemNameDiv, ItmePriceDiv } from './Items.styled';
+import Item from './Item';
+import { ItemsDiv, ItemDiv } from './Items.styled';
 
 const Items = () => {
-	const { coinsSum, money } = useContext(CoinsContext);
 	const [items, setItems] = useState([]);
-
-	const handleClick = () => {
-		console.log(coinsSum, money);
-	};
 
 	const fetchItems = async () => {
 		const itemsData = await itemsApi.getItems();
@@ -19,15 +13,8 @@ const Items = () => {
 	};
 
 	const getList = (array) => {
-		const list = array.map((item) => (
-			<ItemDiv key={item.id} onClick={handleClick}>
-				<ItemNameDiv>{item.name}</ItemNameDiv>
-				<ItmePriceDiv>{getPriceType(item.price, true)}</ItmePriceDiv>
-			</ItemDiv>
-		));
-
+		const list = array.map((item) => <Item key={item.id} item={item} />);
 		if (list.length % 2) list.push(<ItemDiv key={array.length} empty={true} />);
-
 		return list;
 	};
 

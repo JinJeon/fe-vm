@@ -5,8 +5,8 @@ const getPriceType = (price, isUnit = false) => {
 	return price.toLocaleString('ko-KR') + unit;
 };
 
-const useDebounce = (func, delay) => {
-	const callback = useCallback(func, [func]);
+const useDebounce = (func, delay, deps) => {
+	const callback = useCallback(func, [func, deps]);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {

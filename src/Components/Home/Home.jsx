@@ -8,6 +8,7 @@ import { NavigatorDiv, HomeDiv } from './Home.styled';
 const Home = () => {
 	const [coins, setCoins] = useState([]);
 	const [money, setMoney] = useState(0);
+	const [showedMoney, setShowedMoney] = useState(0);
 
 	const fetchCoins = async () => {
 		const coinsData = await coinsApi.getCoins();
@@ -18,8 +19,16 @@ const Home = () => {
 		const coinsSum = coins.reduce((pre, post) => {
 			return pre + post.price * post.count;
 		}, 0);
-		return { coins, setCoins, coinsSum, money, setMoney };
-	}, [coins]);
+		return {
+			coins,
+			setCoins,
+			coinsSum,
+			money,
+			setMoney,
+			showedMoney,
+			setShowedMoney,
+		};
+	}, [coins, money, showedMoney]);
 
 	useEffect(() => {
 		fetchCoins();
