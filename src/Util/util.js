@@ -56,7 +56,7 @@ const spendMoney = (coins, difference) => {
 };
 
 const withdrawMoney = (coins, difference) => {
-	const coinsInWallet = [...coins]; // 복사 방식 변경 필요!
+	const coinsInWallet = coins; // 복사 방식 변경 필요!
 
 	let targetMoneyId = coinsInWallet[coinsInWallet.length - 1].id;
 	let remainedPrice = Math.abs(difference);

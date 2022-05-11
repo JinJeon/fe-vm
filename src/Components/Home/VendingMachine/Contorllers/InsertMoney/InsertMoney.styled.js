@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-const InputMoneyDiv = styled.div`
+const InsertMoneyDiv = styled.div`
 	padding: 20px;
 	font-size: 20px;
 	display: flex;
 	align-items: center;
 `;
 
-const InputMoneyValue = styled.input`
+const InsertMoneyValue = styled.input`
 	width: 90%;
 	text-align: right;
 	outline: none;
@@ -15,4 +15,9 @@ const InputMoneyValue = styled.input`
 	font-size: 20px;
 `;
 
-export { InputMoneyDiv, InputMoneyValue };
+const WithdrawDiv = styled.div`
+	padding: 20px;
+	font-size: 20px;
+`;
+
+export { InsertMoneyDiv, InsertMoneyValue, WithdrawDiv };

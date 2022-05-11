@@ -7,11 +7,15 @@ import {
 	spendMoney,
 	withdrawMoney,
 } from 'Util/util';
-import { InputMoneyDiv, InputMoneyValue } from './InputMoney.styled';
+import {
+	InsertMoneyDiv,
+	InsertMoneyValue,
+	WithdrawDiv,
+} from './InsertMoney.styled';
 
-const InputMoney = () => {
+const InsertMoney = () => {
 	const unit = '원';
-	const debounceTime = 2000;
+	const debounceTime = 500;
 
 	const { coins, coinsSum } = useContext(CoinsContext);
 	const [showedMoney, setShowedMoney] = useState(0);
@@ -26,6 +30,10 @@ const InputMoney = () => {
 		const valueNumber = Number(value.replaceAll(',', ''));
 
 		if (rNumber.test(valueNumber)) setShowedMoney(valueNumber);
+	};
+
+	const handleClick = () => {
+		setShowedMoney(0);
 	};
 
 	const checkShowedMoney = () => {
@@ -49,19 +57,22 @@ const InputMoney = () => {
 	useDebounce(checkShowedMoney, debounceTime);
 
 	return (
-		<InputMoneyDiv>
-			<InputMoneyValue
-				type="text"
-				placeholder="0"
-				maxLength="11"
-				onInput={handleInput}
-				onPaste={handleInput}
-				onFocus={handleFocus}
-				value={getPriceType(showedMoney)}
-			/>
-			{unit}
-		</InputMoneyDiv>
+		<>
+			<InsertMoneyDiv>
+				<InsertMoneyValue
+					type="text"
+					placeholder="0"
+					maxLength="11"
+					onInput={handleInput}
+					onPaste={handleInput}
+					onFocus={handleFocus}
+					value={getPriceType(showedMoney)}
+				/>
+				{unit}
+			</InsertMoneyDiv>
+			<WithdrawDiv onClick={handleClick}>반납</WithdrawDiv>
+		</>
 	);
 };
 
-export default InputMoney;
+export default InsertMoney;
