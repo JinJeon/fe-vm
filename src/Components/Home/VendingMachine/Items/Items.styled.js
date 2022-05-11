@@ -34,6 +34,14 @@ const ItemDiv = styled.div`
 			border: none;
 			cursor: pointer;
 		`}
+	${({ theme: { colors }, count }) =>
+		count === 0 &&
+		css`
+			color: ${colors.red};
+			border: 2px solid ${colors.red};
+			background-color: white;
+			cursor: not-allowed;
+		`}
 `;
 
 const ItemNameDiv = styled.div`
