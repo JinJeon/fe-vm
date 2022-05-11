@@ -16,6 +16,7 @@ const InsertMoneyValue = styled.input`
 `;
 
 const WithdrawDiv = styled.div`
+	cursor: pointer;
 	padding: 20px;
 	font-size: 20px;
 `;

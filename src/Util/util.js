@@ -26,6 +26,8 @@ const spendMoney = (coins, difference) => {
 	}, 0);
 
 	const getTargetMoneyId = (array, targetId = array.length - 1) => {
+		if (targetId < 0) return targetId;
+
 		const id = array[targetId].count
 			? targetId
 			: getTargetMoneyId(array, targetId - 1);
@@ -73,7 +75,7 @@ const withdrawMoney = (coins, difference) => {
 		}
 	}
 
-	return difference - remainedPrice;
+	return difference + remainedPrice;
 };
 
 export { getPriceType, useDebounce, spendMoney, withdrawMoney };

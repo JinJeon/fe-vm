@@ -7,7 +7,6 @@ const Controllers = () => {
 	return (
 		<ControllersDiv>
 			<InsertMoney />
-
 			<Messages />
 		</ControllersDiv>
 	);

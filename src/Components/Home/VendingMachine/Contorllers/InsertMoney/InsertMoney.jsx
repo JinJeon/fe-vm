@@ -15,7 +15,7 @@ import {
 
 const InsertMoney = () => {
 	const unit = '원';
-	const debounceTime = 500;
+	const debounceTime = 2000;
 
 	const { coins, coinsSum } = useContext(CoinsContext);
 	const [showedMoney, setShowedMoney] = useState(0);
@@ -38,7 +38,7 @@ const InsertMoney = () => {
 
 	const checkShowedMoney = () => {
 		const difference = showedMoney - money;
-		const isMoneyInWallet = coinsSum > difference;
+		const isMoneyInWallet = coinsSum >= difference;
 
 		if (isMoneyInWallet) {
 			const calculatedMoney =
@@ -52,6 +52,7 @@ const InsertMoney = () => {
 		} else {
 			setShowedMoney(money);
 		}
+		console.log(coins);
 	};
 
 	useDebounce(checkShowedMoney, debounceTime);

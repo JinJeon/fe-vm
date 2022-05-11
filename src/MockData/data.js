@@ -15,12 +15,12 @@ const items = [
 ];
 
 const coins = [
-	{ id: 0, price: 10, count: 10 },
-	{ id: 1, price: 50, count: 10 },
-	{ id: 2, price: 100, count: 10 },
-	{ id: 3, price: 500, count: 10 },
-	{ id: 4, price: 1000, count: 10 },
-	{ id: 5, price: 5000, count: 10 },
+	{ id: 0, price: 10, count: 0 },
+	{ id: 1, price: 50, count: 0 },
+	{ id: 2, price: 100, count: 0 },
+	{ id: 3, price: 500, count: 0 },
+	{ id: 4, price: 1000, count: 0 },
+	{ id: 5, price: 5000, count: 0 },
 	{ id: 6, price: 10000, count: 10 },
 ];
 
