@@ -43,7 +43,6 @@ const InsertMoney = () => {
 
 			setMoney(totalMoney);
 			setShowedMoney(totalMoney);
-			console.log('unsolved error console');
 		} else {
 			setShowedMoney(money);
 		}
