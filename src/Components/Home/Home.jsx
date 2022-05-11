@@ -7,17 +7,18 @@ import { NavigatorDiv, HomeDiv } from './Home.styled';
 
 const Home = () => {
 	const [coins, setCoins] = useState([]);
+	const [money, setMoney] = useState(0);
 
 	const fetchCoins = async () => {
 		const coinsData = await coinsApi.getCoins();
 		setCoins(coinsData);
 	};
 
-	const coinsInfo = useMemo(() => {
+	const contextInfo = useMemo(() => {
 		const coinsSum = coins.reduce((pre, post) => {
 			return pre + post.price * post.count;
 		}, 0);
-		return { coins, setCoins, coinsSum };
+		return { coins, setCoins, coinsSum, money, setMoney };
 	}, [coins]);
 
 	useEffect(() => {
@@ -30,7 +31,7 @@ const Home = () => {
 				<div>자판기</div>
 				<div>지갑</div>
 			</NavigatorDiv>
-			<CoinsContext.Provider value={coinsInfo}>
+			<CoinsContext.Provider value={contextInfo}>
 				<Outlet />
 			</CoinsContext.Provider>
 		</HomeDiv>

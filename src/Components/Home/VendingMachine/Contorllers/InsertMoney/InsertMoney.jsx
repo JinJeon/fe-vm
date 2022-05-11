@@ -17,9 +17,9 @@ const InsertMoney = () => {
 	const unit = '원';
 	const debounceTime = 2000;
 
-	const { coins, coinsSum } = useContext(CoinsContext);
+	const { coins, coinsSum, setCoins, money, setMoney } =
+		useContext(CoinsContext);
 	const [showedMoney, setShowedMoney] = useState(0);
-	const [money, setMoney] = useState(0);
 
 	const handleFocus = ({ target: { value } }) => {
 		if (value === '0') setShowedMoney(0);
@@ -41,12 +41,13 @@ const InsertMoney = () => {
 		const isMoneyInWallet = coinsSum >= difference;
 
 		if (isMoneyInWallet) {
-			const calculatedMoney =
+			const { calculatedMoney, coinsInWallet } =
 				difference >= 0
 					? spendMoney(coins, difference)
 					: withdrawMoney(coins, difference);
 			const totalMoney = money + calculatedMoney;
 
+			setCoins(coinsInWallet);
 			setMoney(totalMoney);
 			setShowedMoney(totalMoney);
 		} else {

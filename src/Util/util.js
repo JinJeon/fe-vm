@@ -54,11 +54,13 @@ const spendMoney = (coins, difference) => {
 		}
 	}
 
-	return difference - remainedPrice;
+	const calculatedMoney = difference - remainedPrice;
+
+	return { calculatedMoney, coinsInWallet };
 };
 
 const withdrawMoney = (coins, difference) => {
-	const coinsInWallet = coins; // 복사 방식 변경 필요!
+	const coinsInWallet = [...coins]; // 복사 방식 변경 필요!
 
 	let targetMoneyId = coinsInWallet[coinsInWallet.length - 1].id;
 	let remainedPrice = Math.abs(difference);
@@ -75,7 +77,9 @@ const withdrawMoney = (coins, difference) => {
 		}
 	}
 
-	return difference + remainedPrice;
+	const calculatedMoney = difference + remainedPrice;
+
+	return { calculatedMoney, coinsInWallet };
 };
 
 export { getPriceType, useDebounce, spendMoney, withdrawMoney };
