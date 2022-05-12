@@ -17,7 +17,8 @@ import {
 
 const InsertMoney = () => {
 	const unit = '원';
-	const debounceTime = 1000;
+	const debounceInsertTime = 1000;
+	const autoWithdrawTime = 5000;
 	const { coins, coinsSum } = useContext(CoinsContext);
 	const { showedMoney, setShowedMoney } = useContext(ShowedMoneyContext);
 	const { money, setMoney } = useContext(MoneyContext);
@@ -56,7 +57,8 @@ const InsertMoney = () => {
 		});
 	};
 
-	useDebounce(checkShowedMoney, debounceTime);
+	useDebounce(checkShowedMoney, debounceInsertTime);
+	useDebounce(handleClick, autoWithdrawTime);
 
 	return (
 		<>
