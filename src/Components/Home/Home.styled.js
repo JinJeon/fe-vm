@@ -24,17 +24,16 @@ const NavigatorlistDiv = styled.div`
 		padding: ${distance.small};
 		display: inline-block;
 		border: 2px solid white;
-		:hover {
-			border: 2px solid ${colors.black};
-		}
 
 		:first-child {
 			border: 2px solid ${colors.green};
 			color: ${colors.green};
-			:hover {
-				background-color: ${colors.green};
-				color: ${colors.white};
-			}
+		}
+
+		:hover {
+			border: 2px solid ${colors.green};
+			background-color: ${colors.green};
+			color: ${colors.white};
 		}
 	`};
 `;

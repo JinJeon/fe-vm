@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react';
 
 import itemsApi from 'Service/itemsApi';
 import Item from './Item';
-import { ItemsWrapper, ItemsDiv, ItemDiv, TakingOutDiv } from './Items.styled';
+import {
+	ItemsWrapper,
+	ItemsDiv,
+	ItemDiv,
+	TakingOutDiv,
+	Loading,
+} from './Items.styled';
 
 const Items = () => {
 	const [items, setItems] = useState([]);
@@ -26,7 +32,14 @@ const Items = () => {
 
 	return (
 		<ItemsWrapper>
-			<TakingOutDiv />
+			<TakingOutDiv>
+				<div>
+					상품이 나오는 중
+					<Loading>
+						<div />
+					</Loading>
+				</div>
+			</TakingOutDiv>
 			<ItemsDiv>{list}</ItemsDiv>
 		</ItemsWrapper>
 	);

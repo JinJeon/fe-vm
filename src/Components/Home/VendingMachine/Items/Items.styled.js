@@ -65,15 +65,48 @@ const ItmePriceDiv = styled.div`
 `;
 
 const TakingOutDiv = styled.div`
-	/* visibility: hidden; */
-	box-sizing: border-box;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	opacity: 70%;
-	border-radius: 10px;
 	${({ theme: { colors } }) => css`
-		background-color: ${colors.black};
+		/* visibility: hidden; */
+		box-sizing: border-box;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 70%;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		color: ${colors.yellow};
+		font-size: 25px;
+		background-color: ${colors.black};}
+	`}
+`;
+
+const Loading = styled.div`
+	${({ theme: { colors } }) => css`
+		position: relative;
+		width: 100%;
+		height: 100%;
+		margin-top: 20px;
+
+		div {
+			margin: 0 auto;
+			border: 10px solid orange;
+			border-radius: 50%;
+			border-color: ${colors.yellow} transparent transparent transparent;
+			width: 50px;
+			height: 50px;
+			animation: spinning 1s infinite;
+		}
+
+		@keyframes spinning {
+			from {
+				transform: rotate(0);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
 	`}
 `;
 
@@ -84,4 +117,5 @@ export {
 	ItemNameDiv,
 	ItmePriceDiv,
 	TakingOutDiv,
+	Loading,
 };
