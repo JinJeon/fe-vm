@@ -26,8 +26,8 @@ const spendMoney = (coins, difference) => {
 			remainedPrice -= targetPrice;
 			targetMoney.count -= 1;
 			changedCoins[targetPrice] = changedCoins[targetPrice]
-				? changedCoins[targetPrice] - 1
-				: -1;
+				? changedCoins[targetPrice] + 1
+				: 1;
 			totalCount -= 1;
 		} else {
 			targetMoneyId -= 1;
