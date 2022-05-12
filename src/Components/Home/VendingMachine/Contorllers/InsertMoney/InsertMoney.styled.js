@@ -22,8 +22,6 @@ const WithdrawDiv = styled.div`
 	cursor: pointer;
 	padding: 20px;
 	font-size: 20px;
-	border: none;
-	background-color: yellow;
 `;
 
 export { InsertMoneyDiv, InsertMoneyValue, WithdrawDiv };

@@ -8,11 +8,11 @@ import { ItemDiv, ItemNameDiv, ItmePriceDiv } from './Items.styled';
 
 const Item = ({ item }) => {
 	const targetItem = item;
-	const { name, price } = targetItem;
+	const { name, price, count } = targetItem;
 	const { money, setShowedMoney, setMoney } = useContext(CoinsContext);
 	const debounceTime = 2000;
 	const difference = money - price;
-	const isSelectable = difference >= 0;
+	const isSelectable = difference >= 0 && count;
 
 	const handleClick = useCallback(() => {
 		if (!isSelectable) return;
@@ -21,7 +21,7 @@ const Item = ({ item }) => {
 		setMoney(difference);
 
 		targetItem.count -= 1;
-	}, [difference, isSelectable, setMoney, setShowedMoney]);
+	}, [difference, isSelectable, setMoney, setShowedMoney, targetItem]);
 
 	const debouncedHandleClick = useMemo(
 		() => debounce(handleClick, debounceTime),

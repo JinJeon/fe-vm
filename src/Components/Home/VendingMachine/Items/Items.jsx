@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import itemsApi from 'Service/itemsApi';
 import Item from './Item';
-import { ItemsDiv, ItemDiv } from './Items.styled';
+import { ItemsWrapper, ItemsDiv, ItemDiv, TakingOutDiv } from './Items.styled';
 
 const Items = () => {
 	const [items, setItems] = useState([]);
@@ -24,7 +24,12 @@ const Items = () => {
 		fetchItems();
 	}, []);
 
-	return <ItemsDiv>{list}</ItemsDiv>;
+	return (
+		<ItemsWrapper>
+			<TakingOutDiv />
+			<ItemsDiv>{list}</ItemsDiv>
+		</ItemsWrapper>
+	);
 };
 
 export default Items;
