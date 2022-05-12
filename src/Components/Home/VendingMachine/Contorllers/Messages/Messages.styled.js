@@ -9,8 +9,4 @@ const MessagesDiv = styled.div`
 	`}
 `;
 
-const Messages = () => {
-	return <MessagesDiv>MESSAGES</MessagesDiv>;
-};
-
-export default Messages;
+export default MessagesDiv;

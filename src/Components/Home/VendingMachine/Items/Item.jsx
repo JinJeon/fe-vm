@@ -2,7 +2,11 @@ import { useContext, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 
-import CoinsContext from 'Components/Home/CoinsContext';
+import {
+	MoneyContext,
+	ShowedMoneyContext,
+	IsTakingOutContext,
+} from 'Components/Contexts';
 import { getPriceType } from 'Util/util';
 import {
 	ItemDiv,
@@ -14,8 +18,9 @@ import {
 const Item = ({ item }) => {
 	const targetItem = item;
 	const { name, price, count } = targetItem;
-	const { money, setShowedMoney, setMoney, setIsTakingOut } =
-		useContext(CoinsContext);
+	const { setIsTakingOut } = useContext(IsTakingOutContext);
+	const { setShowedMoney } = useContext(ShowedMoneyContext);
+	const { money, setMoney } = useContext(MoneyContext);
 	const debounceTime = 2000;
 	const difference = money - price;
 	const isSelectable = difference >= 0 && count;
@@ -30,9 +35,9 @@ const Item = ({ item }) => {
 	}, [
 		difference,
 		isSelectable,
+		targetItem,
 		setMoney,
 		setShowedMoney,
-		targetItem,
 		setIsTakingOut,
 	]);
 

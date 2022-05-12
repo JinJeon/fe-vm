@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 
-import CoinsContext from 'Components/Home/CoinsContext';
 import {
-	getPriceType,
-	useDebounce,
-	spendMoney,
-	withdrawMoney,
-} from 'Util/util';
+	CoinsContext,
+	MoneyContext,
+	ShowedMoneyContext,
+	IsTakingOutContext,
+} from 'Components/Contexts';
+import { getPriceType, useDebounce } from 'Util/util';
+import { spendMoney, withdrawMoney } from 'Components/Common/controlMoney';
 import {
 	InsertMoneyDiv,
 	InsertMoneyValue,
@@ -16,15 +17,10 @@ import {
 const InsertMoney = () => {
 	const unit = '원';
 	const debounceTime = 1000;
-	const {
-		coins,
-		coinsSum,
-		money,
-		showedMoney,
-		isTakingOut,
-		setMoney,
-		setShowedMoney,
-	} = useContext(CoinsContext);
+	const { coins, coinsSum } = useContext(CoinsContext);
+	const { showedMoney, setShowedMoney } = useContext(ShowedMoneyContext);
+	const { money, setMoney } = useContext(MoneyContext);
+	const { isTakingOut } = useContext(IsTakingOutContext);
 
 	const handleInput = ({ target: { value } }) => {
 		const rNumber = /^[0-9]+$|^$/;
@@ -40,7 +36,7 @@ const InsertMoney = () => {
 		const isMoneyInWallet = coinsSum >= difference;
 
 		if (isMoneyInWallet) {
-			const { calculatedMoney } =
+			const { calculatedMoney, changedCoins } =
 				difference >= 0
 					? spendMoney(coins, difference)
 					: withdrawMoney(coins, difference);
@@ -48,6 +44,7 @@ const InsertMoney = () => {
 
 			setMoney(totalMoney);
 			setShowedMoney(totalMoney);
+			console.log(changedCoins);
 		} else {
 			setShowedMoney(money);
 		}
