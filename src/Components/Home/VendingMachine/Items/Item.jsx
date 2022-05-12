@@ -6,6 +6,7 @@ import {
 	MoneyContext,
 	ShowedMoneyContext,
 	IsTakingOutContext,
+	MessagesDispatchContext,
 } from 'Components/Contexts';
 import { getPriceType } from 'Util/util';
 import {
@@ -21,6 +22,7 @@ const Item = ({ item }) => {
 	const { setIsTakingOut } = useContext(IsTakingOutContext);
 	const { setShowedMoney } = useContext(ShowedMoneyContext);
 	const { money, setMoney } = useContext(MoneyContext);
+	const messagesDispatch = useContext(MessagesDispatchContext);
 	const debounceTime = 2000;
 	const difference = money - price;
 	const isSelectable = difference >= 0 && count;
@@ -30,6 +32,7 @@ const Item = ({ item }) => {
 		setMoney(difference);
 		setShowedMoney(difference);
 		setIsTakingOut(false);
+		messagesDispatch({ type: 'BUY', contents: name });
 
 		targetItem.count -= 1;
 	}, [
@@ -39,6 +42,8 @@ const Item = ({ item }) => {
 		setMoney,
 		setShowedMoney,
 		setIsTakingOut,
+		messagesDispatch,
+		name,
 	]);
 
 	const debouncedHandleClick = useMemo(

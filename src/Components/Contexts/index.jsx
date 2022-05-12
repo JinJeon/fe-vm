@@ -3,6 +3,7 @@ import React from 'react';
 import { CoinsContext, CoinsProvider } from 'Components/Contexts/CoinsContext';
 import {
 	MessagesContext,
+	MessagesDispatchContext,
 	MessagesProvider,
 } from 'Components/Contexts/MessagesContext';
 import { ShowedMoneyContext, ShowedMoneyProvider } from './ShowedMoneyContext';
@@ -33,5 +34,6 @@ export {
 	MoneyContext,
 	ShowedMoneyContext,
 	IsTakingOutContext,
+	MessagesDispatchContext,
 	ContextsProvider,
 };

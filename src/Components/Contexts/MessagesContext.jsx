@@ -1,17 +1,65 @@
-import { createContext, useState, useMemo } from 'react';
+import { createContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
-const MessagesContext = createContext({});
+import { getPresentTime, getPriceType } from 'Util/util';
+
+const MessagesContext = createContext([]);
+const MessagesDispatchContext = createContext();
 
 const MessagesProvider = ({ inner }) => {
-	const [messages, setMessages] = useState([]);
+	const reducer = (state, action) => {
+		const { type, contents } = action;
+		const newState = [...state];
+		let keys;
+		let message;
 
-	const value = useMemo(() => {
-		return { messages, setMessages };
-	}, [messages, setMessages]);
+		switch (type) {
+			case 'PLUS':
+				keys = Object.keys(contents);
+				keys.forEach((key) => {
+					message = `${getPriceType(key)}원 ${contents[key]}개 반환`;
+					newState.push({
+						message,
+						id: newState.length,
+						time: `${getPresentTime()}`,
+					});
+				});
+				break;
+
+			case 'MINUS':
+				keys = Object.keys(contents);
+				keys.forEach((key) => {
+					message = `${getPriceType(key)}원 ${contents[key]}개 투입`;
+					newState.push({
+						message,
+						id: newState.length,
+						time: `${getPresentTime()}`,
+					});
+				});
+				break;
+
+			case 'BUY':
+				message = `${contents} 구입`;
+				newState.push({
+					message,
+					id: newState.length,
+					time: `${getPresentTime()}`,
+				});
+				break;
+
+			default:
+		}
+		return newState;
+	};
+
+	const [messages, messagesDispatch] = useReducer(reducer, []);
 
 	return (
-		<MessagesContext.Provider value={value}>{inner}</MessagesContext.Provider>
+		<MessagesDispatchContext.Provider value={messagesDispatch}>
+			<MessagesContext.Provider value={messages}>
+				{inner}
+			</MessagesContext.Provider>
+		</MessagesDispatchContext.Provider>
 	);
 };
 
@@ -19,4 +67,4 @@ MessagesProvider.propTypes = {
 	inner: PropTypes.node.isRequired,
 };
 
-export { MessagesContext, MessagesProvider };
+export { MessagesContext, MessagesDispatchContext, MessagesProvider };
