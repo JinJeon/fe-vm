@@ -15,7 +15,7 @@ import {
 
 const InsertMoney = () => {
 	const unit = '원';
-	const debounceTime = 2000;
+	const debounceTime = 1000;
 	const { coins, coinsSum, money, setMoney, showedMoney, setShowedMoney } =
 		useContext(CoinsContext);
 

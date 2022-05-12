@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
+import CoinsContext from 'Components/Home/CoinsContext';
 import itemsApi from 'Service/itemsApi';
 import Item from './Item';
 import {
@@ -12,6 +13,7 @@ import {
 
 const Items = () => {
 	const [items, setItems] = useState([]);
+	const { isTakingOut } = useContext(CoinsContext);
 
 	const fetchItems = async () => {
 		const itemsData = await itemsApi.getItems();
@@ -32,7 +34,7 @@ const Items = () => {
 
 	return (
 		<ItemsWrapper>
-			<TakingOutDiv>
+			<TakingOutDiv isTakingOut={isTakingOut}>
 				<div>
 					상품이 나오는 중
 					<Loading>

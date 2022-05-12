@@ -64,9 +64,10 @@ const ItmePriceDiv = styled.div`
 	padding: 2px;
 `;
 
+const ItemWrapper = styled.div``;
+
 const TakingOutDiv = styled.div`
 	${({ theme: { colors } }) => css`
-		/* visibility: hidden; */
 		box-sizing: border-box;
 		position: absolute;
 		width: 100%;
@@ -80,6 +81,12 @@ const TakingOutDiv = styled.div`
 		font-size: 25px;
 		background-color: ${colors.black};}
 	`}
+
+	${({ isTakingOut }) =>
+		!isTakingOut &&
+		css`
+			visibility: hidden;
+		`}
 `;
 
 const Loading = styled.div`
@@ -116,6 +123,7 @@ export {
 	ItemDiv,
 	ItemNameDiv,
 	ItmePriceDiv,
+	ItemWrapper,
 	TakingOutDiv,
 	Loading,
 };

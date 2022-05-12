@@ -9,7 +9,7 @@ const Home = () => {
 	const [coins, setCoins] = useState([]);
 	const [money, setMoney] = useState(0);
 	const [showedMoney, setShowedMoney] = useState(0);
-	const [takingOut, setTakingOut] = useState(false);
+	const [isTakingOut, setIsTakingOut] = useState(false);
 
 	const fetchCoins = async () => {
 		const coinsData = await coinsApi.getCoins();
@@ -28,10 +28,10 @@ const Home = () => {
 			setMoney,
 			showedMoney,
 			setShowedMoney,
-			takingOut,
-			setTakingOut,
+			isTakingOut,
+			setIsTakingOut,
 		};
-	}, [coins, money, showedMoney, takingOut]);
+	}, [coins, money, showedMoney, isTakingOut]);
 
 	useEffect(() => {
 		fetchCoins();
