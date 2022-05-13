@@ -26,8 +26,8 @@ const NavigatorListDiv = styled.div`
 		border: 2px solid white;
 
 		:hover {
-			border: 2px solid ${colors.green};
-			background-color: ${colors.green};
+			border: 2px solid ${colors.black};
+			background-color: ${colors.black};
 			color: ${colors.white};
 		}
 	`};
@@ -35,6 +35,11 @@ const NavigatorListDiv = styled.div`
 	${({ theme: { colors }, pathname, to }) =>
 		pathname === to &&
 		css`
+			:hover {
+				border: 2px solid ${colors.green};
+				background-color: ${colors.green};
+				color: ${colors.white};
+			}
 			border: 2px solid ${colors.green};
 			color: ${colors.green};
 		`}
