@@ -36,6 +36,7 @@ const BtnsDiv = styled.div`
 const InsertBtnDiv = styled.div`
 	${({ theme: { colors }, isTakingOut }) => css`
 		cursor: ${!isTakingOut ? 'pointer' : 'not-allowed'};
+		height: 20px;
 		margin: 15px;
 		border-radius: 20px;
 		border: 2px solid ${colors.black};
@@ -45,12 +46,35 @@ const InsertBtnDiv = styled.div`
 		:hover {
 			background-color: ${colors.green};
 		}
+
+		${isTakingOut &&
+		css`
+			div {
+				margin: 0 auto;
+				border: 5px solid orange;
+				border-radius: 50%;
+				border-color: ${colors.white} transparent transparent transparent;
+				width: 15px;
+				height: 15px;
+				animation: spinning 1s infinite;
+			}
+
+			@keyframes spinning {
+				from {
+					transform: rotate(0);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
+		`}
 	`}
 `;
 
 const WithdrawBtnDiv = styled.div`
 	${({ theme: { colors }, isTakingOut }) => css`
 		cursor: ${!isTakingOut ? 'pointer' : 'not-allowed'};
+		height: 20px;
 		margin: 15px;
 		border-radius: 20px;
 		border: 2px solid ${colors.black};
@@ -60,6 +84,28 @@ const WithdrawBtnDiv = styled.div`
 		:hover {
 			background-color: ${colors.red};
 		}
+
+		${isTakingOut &&
+		css`
+			div {
+				margin: 0 auto;
+				border: 5px solid orange;
+				border-radius: 50%;
+				border-color: ${colors.white} transparent transparent transparent;
+				width: 15px;
+				height: 15px;
+				animation: spinning 1s infinite;
+			}
+
+			@keyframes spinning {
+				from {
+					transform: rotate(0);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
+		`}
 	`}
 `;
 

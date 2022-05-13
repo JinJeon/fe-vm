@@ -96,14 +96,19 @@ const InsertMoney = () => {
 				{UNIT}
 			</InsertMoneyDiv>
 			<BtnsDiv>
-				<InsertBtnDiv onClick={() => handleClickBtns()}>
-					{isTakingOut ? '❌' : '투입'}
+				<InsertBtnDiv
+					onClick={() => handleClickBtns()}
+					isTakingOut={isTakingOut}
+				>
+					{!isTakingOut && '투입'}
+					<div />
 				</InsertBtnDiv>
 				<WithdrawBtnDiv
 					onClick={() => handleClickBtns(true)}
 					isTakingOut={isTakingOut}
 				>
-					{isTakingOut ? '❌' : '반납'}
+					{!isTakingOut && '반납'}
+					<div />
 				</WithdrawBtnDiv>
 			</BtnsDiv>
 		</>
