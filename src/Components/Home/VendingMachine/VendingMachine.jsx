@@ -9,7 +9,8 @@ const VendingMachineDiv = styled.div`
 		background-color: ${colors.yellow};
 		margin: 0 auto;
 		margin-top: 40px;
-		width: 800px;
+		width: 900px;
+		height: 720px;
 		border-radius: 10px;
 	`}
 `;
