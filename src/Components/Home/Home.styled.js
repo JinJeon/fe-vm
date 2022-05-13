@@ -17,7 +17,7 @@ const NavigatorDiv = styled.div`
 	`};
 `;
 
-const NavigatorlistDiv = styled.div`
+const NavigatorListDiv = styled.div`
 	${({ theme: { colors, distance } }) => css`
 		cursor: pointer;
 		border-radius: ${distance.small};
@@ -25,17 +25,19 @@ const NavigatorlistDiv = styled.div`
 		display: inline-block;
 		border: 2px solid white;
 
-		:first-child {
-			border: 2px solid ${colors.green};
-			color: ${colors.green};
-		}
-
 		:hover {
 			border: 2px solid ${colors.green};
 			background-color: ${colors.green};
 			color: ${colors.white};
 		}
 	`};
+
+	${({ theme: { colors }, pathname, to }) =>
+		pathname === to &&
+		css`
+			border: 2px solid ${colors.green};
+			color: ${colors.green};
+		`}
 `;
 
-export { HomeDiv, NavigatorDiv, NavigatorlistDiv };
+export { HomeDiv, NavigatorDiv, NavigatorListDiv };
