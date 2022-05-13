@@ -1,8 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 
-import { IsTakingOutContext } from 'Components/Contexts';
+import { IsTakingOutContext, ItemsContext } from 'Components/Contexts';
 import { TAKINGOUT, lineCount } from 'Components/Common/constant';
-import itemsApi from 'Service/itemsApi';
 import Item from './Item';
 import {
 	ItemsWrapper,
@@ -13,13 +12,8 @@ import {
 } from './Items.styled';
 
 const Items = () => {
-	const [items, setItems] = useState([]);
+	const { items } = useContext(ItemsContext);
 	const { isTakingOut } = useContext(IsTakingOutContext);
-
-	const fetchItems = async () => {
-		const itemsData = await itemsApi.getItems();
-		setItems(itemsData);
-	};
 
 	const getList = (itemsArray) => {
 		const list = itemsArray.map((item) => <Item key={item.id} item={item} />);
@@ -31,10 +25,6 @@ const Items = () => {
 	};
 
 	const list = items.length ? getList(items) : null;
-
-	useEffect(() => {
-		fetchItems();
-	}, []);
 
 	return (
 		<ItemsWrapper>
