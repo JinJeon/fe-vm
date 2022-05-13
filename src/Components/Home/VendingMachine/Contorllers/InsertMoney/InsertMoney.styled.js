@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components';
 
 const InsertMoneyDiv = styled.div`
+	${({ theme: { colors } }) => css`
+		margin: 15px;
+		border-radius: 20px;
+		border: 2px solid ${colors.black};
+		background-color: ${colors.yellow};
+	`}
+
 	padding: 20px;
 	font-size: 20px;
 	display: flex;
@@ -18,12 +25,48 @@ const InsertMoneyValue = styled.input`
 	`}
 `;
 
-const WithdrawDiv = styled.div`
-	${({ isTakingOut }) => css`
+const BtnsDiv = styled.div`
+	display: flex;
+	justify-content: space-between;
+	> div {
+		flex-basis: 50%;
+	}
+`;
+
+const InsertBtnDiv = styled.div`
+	${({ theme: { colors }, isTakingOut }) => css`
 		cursor: ${!isTakingOut ? 'pointer' : 'not-allowed'};
+		margin: 15px;
+		border-radius: 20px;
+		border: 2px solid ${colors.black};
+		background-color: ${colors.lightGreen};
 		padding: 20px;
 		font-size: 20px;
+		:hover {
+			background-color: ${colors.green};
+		}
 	`}
 `;
 
-export { InsertMoneyDiv, InsertMoneyValue, WithdrawDiv };
+const WithdrawBtnDiv = styled.div`
+	${({ theme: { colors }, isTakingOut }) => css`
+		cursor: ${!isTakingOut ? 'pointer' : 'not-allowed'};
+		margin: 15px;
+		border-radius: 20px;
+		border: 2px solid ${colors.black};
+		background-color: ${colors.lightRed};
+		padding: 20px;
+		font-size: 20px;
+		:hover {
+			background-color: ${colors.red};
+		}
+	`}
+`;
+
+export {
+	InsertMoneyDiv,
+	InsertMoneyValue,
+	BtnsDiv,
+	InsertBtnDiv,
+	WithdrawBtnDiv,
+};
