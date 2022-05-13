@@ -1,9 +1,7 @@
 import { useContext } from 'react';
 
 import {
-	insertMoneyTime,
 	autoWithdrawTime,
-	emptyMoney,
 	MINUS,
 	PLUS,
 	UNIT,
@@ -21,7 +19,9 @@ import { spendMoney, withdrawMoney } from 'Components/Common/controlMoney';
 import {
 	InsertMoneyDiv,
 	InsertMoneyValue,
-	WithdrawDiv,
+	InsertBtnDiv,
+	WithdrawBtnDiv,
+	BtnsDiv,
 } from './InsertMoney.styled';
 
 const InsertMoney = () => {
@@ -30,14 +30,6 @@ const InsertMoney = () => {
 	const { money, setMoney } = useContext(MoneyContext);
 	const { isTakingOut } = useContext(IsTakingOutContext);
 	const messagesDispatch = useContext(MessagesDispatchContext);
-
-	const handleInput = ({ target: { value } }) => {
-		const numberFilter = /^[0-9]+$|^$/;
-		const valueNumber = Number(value.replaceAll(',', ''));
-		if (numberFilter.test(valueNumber)) setShowedMoney(valueNumber);
-	};
-
-	const handleClick = () => !isTakingOut && setShowedMoney(emptyMoney);
 
 	const getCalculatingOptions = (difference) => {
 		const isSpending = difference >= 0;
@@ -48,9 +40,9 @@ const InsertMoney = () => {
 		return calculatingOptions;
 	};
 
-	const checkShowedMoney = () => {
-		const difference = showedMoney - money;
-		const isMoneyInWallet = coinsSum >= difference;
+	const checkShowedMoney = (isEmpty) => {
+		const difference = isEmpty ? -money : showedMoney - money;
+		const isMoneyInWallet = coinsSum >= difference; // when showedMoney is much larger
 		const { calculateMoney, calculatingType } =
 			getCalculatingOptions(difference);
 
@@ -70,8 +62,23 @@ const InsertMoney = () => {
 		});
 	};
 
-	useDebounce(checkShowedMoney, insertMoneyTime);
-	useDebounce(handleClick, autoWithdrawTime);
+	const handleInput = ({ target: { value } }) => {
+		const numberFilter = /^[0-9]+$|^$/;
+		const valueNumber = Number(value.replaceAll(',', ''));
+		if (numberFilter.test(valueNumber)) setShowedMoney(valueNumber);
+	};
+
+	const handleClickBtns = (isEmpty) => {
+		if (isTakingOut || !showedMoney) return;
+		checkShowedMoney(isEmpty);
+	};
+
+	const handleKeyUp = ({ key }) => {
+		const isEnterKey = key === 'Enter';
+		if (isEnterKey) checkShowedMoney();
+	};
+
+	useDebounce(handleClickBtns, autoWithdrawTime);
 
 	return (
 		<>
@@ -81,15 +88,24 @@ const InsertMoney = () => {
 					maxLength="11"
 					onInput={handleInput}
 					onPaste={handleInput}
+					onKeyUp={handleKeyUp}
 					value={getPriceType(showedMoney)}
 					disabled={isTakingOut}
 					isTakingOut={isTakingOut}
 				/>
 				{UNIT}
 			</InsertMoneyDiv>
-			<WithdrawDiv onClick={handleClick} isTakingOut={isTakingOut}>
-				{isTakingOut ? '상품이 나오는 중' : '반납'}
-			</WithdrawDiv>
+			<BtnsDiv>
+				<InsertBtnDiv onClick={() => handleClickBtns()}>
+					{isTakingOut ? '❌' : '투입'}
+				</InsertBtnDiv>
+				<WithdrawBtnDiv
+					onClick={() => handleClickBtns(true)}
+					isTakingOut={isTakingOut}
+				>
+					{isTakingOut ? '❌' : '반납'}
+				</WithdrawBtnDiv>
+			</BtnsDiv>
 		</>
 	);
 };
