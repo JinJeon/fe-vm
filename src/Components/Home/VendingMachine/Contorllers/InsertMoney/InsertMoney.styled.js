@@ -33,18 +33,18 @@ const BtnsDiv = styled.div`
 	}
 `;
 
-const InsertBtnDiv = styled.div`
-	${({ theme: { colors }, isTakingOut }) => css`
+const BtnDiv = styled.div`
+	${({ theme: { colors }, isTakingOut, color }) => css`
 		cursor: ${!isTakingOut ? 'pointer' : 'not-allowed'};
 		height: 20px;
 		margin: 15px;
 		border-radius: 20px;
 		border: 2px solid ${colors.black};
-		background-color: ${colors.lightGreen};
+		background-color: ${colors[color.main]};
 		padding: 20px;
 		font-size: 20px;
 		:hover {
-			background-color: ${colors.green};
+			background-color: ${colors[color.sub]};
 		}
 
 		${isTakingOut &&
@@ -71,48 +71,4 @@ const InsertBtnDiv = styled.div`
 	`}
 `;
 
-const WithdrawBtnDiv = styled.div`
-	${({ theme: { colors }, isTakingOut }) => css`
-		cursor: ${!isTakingOut ? 'pointer' : 'not-allowed'};
-		height: 20px;
-		margin: 15px;
-		border-radius: 20px;
-		border: 2px solid ${colors.black};
-		background-color: ${colors.lightRed};
-		padding: 20px;
-		font-size: 20px;
-		:hover {
-			background-color: ${colors.red};
-		}
-
-		${isTakingOut &&
-		css`
-			div {
-				margin: 0 auto;
-				border: 5px solid orange;
-				border-radius: 50%;
-				border-color: ${colors.white} transparent transparent transparent;
-				width: 15px;
-				height: 15px;
-				animation: spinning 1s infinite;
-			}
-
-			@keyframes spinning {
-				from {
-					transform: rotate(0);
-				}
-				to {
-					transform: rotate(360deg);
-				}
-			}
-		`}
-	`}
-`;
-
-export {
-	InsertMoneyDiv,
-	InsertMoneyValue,
-	BtnsDiv,
-	InsertBtnDiv,
-	WithdrawBtnDiv,
-};
+export { InsertMoneyDiv, InsertMoneyValue, BtnsDiv, BtnDiv };

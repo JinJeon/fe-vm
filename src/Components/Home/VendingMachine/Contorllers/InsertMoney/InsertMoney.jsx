@@ -16,13 +16,8 @@ import {
 import { getPriceType } from 'Util/util';
 import useDebounce from 'Util/hooks';
 import { spendMoney, withdrawMoney } from 'Components/Common/controlMoney';
-import {
-	InsertMoneyDiv,
-	InsertMoneyValue,
-	InsertBtnDiv,
-	WithdrawBtnDiv,
-	BtnsDiv,
-} from './InsertMoney.styled';
+import { InsertMoneyDiv, InsertMoneyValue } from './InsertMoney.styled';
+import Btns from './Btns';
 
 const InsertMoney = () => {
 	const { coins, coinsSum } = useContext(CoinsContext);
@@ -31,8 +26,8 @@ const InsertMoney = () => {
 	const { isTakingOut } = useContext(IsTakingOutContext);
 	const messagesDispatch = useContext(MessagesDispatchContext);
 
-	const getCalculatingOptions = (difference) => {
-		const isSpending = difference >= 0;
+	const getCalculatingOptions = (diffWithInsert) => {
+		const isSpending = diffWithInsert >= 0;
 		const calculatingOptions = {
 			calculateMoney: isSpending ? spendMoney : withdrawMoney,
 			calculatingType: isSpending ? MINUS : PLUS,
@@ -40,18 +35,21 @@ const InsertMoney = () => {
 		return calculatingOptions;
 	};
 
-	const checkShowedMoney = (isEmpty) => {
-		const difference = isEmpty ? -money : showedMoney - money;
-		const isMoneyInWallet = coinsSum >= difference; // when showedMoney is much larger
+	const calculateAndReportMoney = (isEmpty) => {
+		const diffWithInsert = isEmpty ? -money : showedMoney - money;
+		const isMoneyInWallet = coinsSum >= diffWithInsert; // is inserted money much larger than wallet
 		const { calculateMoney, calculatingType } =
-			getCalculatingOptions(difference);
+			getCalculatingOptions(diffWithInsert);
 
 		if (!isMoneyInWallet) {
 			setShowedMoney(money);
 			return;
 		}
 
-		const { calculatedMoney, changedCoins } = calculateMoney(coins, difference);
+		const { calculatedMoney, changedCoins } = calculateMoney(
+			coins,
+			diffWithInsert
+		);
 		const totalMoney = money + calculatedMoney;
 
 		setMoney(totalMoney);
@@ -68,17 +66,17 @@ const InsertMoney = () => {
 		if (numberFilter.test(valueNumber)) setShowedMoney(valueNumber);
 	};
 
-	const handleClickBtns = (isEmpty) => {
+	const withdrawAll = (isEmpty) => {
 		if (isTakingOut || !showedMoney) return;
-		checkShowedMoney(isEmpty);
+		calculateAndReportMoney(isEmpty);
 	};
 
 	const handleKeyUp = ({ key }) => {
 		const isEnterKey = key === 'Enter';
-		if (isEnterKey) checkShowedMoney();
+		if (isEnterKey) calculateAndReportMoney();
 	};
 
-	useDebounce(handleClickBtns, autoWithdrawTime);
+	useDebounce(withdrawAll, autoWithdrawTime);
 
 	return (
 		<>
@@ -95,22 +93,7 @@ const InsertMoney = () => {
 				/>
 				{UNIT}
 			</InsertMoneyDiv>
-			<BtnsDiv>
-				<InsertBtnDiv
-					onClick={() => handleClickBtns()}
-					isTakingOut={isTakingOut}
-				>
-					{!isTakingOut && '투입'}
-					<div />
-				</InsertBtnDiv>
-				<WithdrawBtnDiv
-					onClick={() => handleClickBtns(true)}
-					isTakingOut={isTakingOut}
-				>
-					{!isTakingOut && '반납'}
-					<div />
-				</WithdrawBtnDiv>
-			</BtnsDiv>
+			<Btns isTakingOut={isTakingOut} withdrawAll={withdrawAll} />
 		</>
 	);
 };
