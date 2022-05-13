@@ -4,20 +4,17 @@ import { getPriceType } from 'Util/util';
 import { CoinsContext, MessagesContext } from 'Components/Contexts';
 import {
 	WalletDiv,
-	CoinDiv,
-	CoinCountDiv,
-	CoinPriceDiv,
 	CoinsSumDiv,
 	WalletMessagesDiv,
 	WalletMessageDiv,
 } from './Wallet.styled';
+import Coin from './Coin';
 
 const Wallet = () => {
 	const { coins, coinsSum } = useContext(CoinsContext);
 	const messages = useContext(MessagesContext);
-	const handleClickCount = () => {
-		console.log('CLICK TEST');
-	};
+
+	const coinsList = coins.map((coin) => <Coin key={coin.id} coin={coin} />);
 
 	const WalletMessagesList = messages.map(({ id, time, totalPrice }) => {
 		const priceSign = totalPrice > 0 ? '+' : '-';
@@ -28,16 +25,6 @@ const Wallet = () => {
 					{`[${time}] ${priceSign} ${totalPriceByType}`}
 				</WalletMessageDiv>
 			)
-		);
-	});
-
-	const coinsList = coins.map((coin) => {
-		const { id, price, count } = coin;
-		return (
-			<CoinDiv key={id}>
-				<CoinPriceDiv>{getPriceType(price, true)}</CoinPriceDiv>
-				<CoinCountDiv onClick={handleClickCount}>{count}개</CoinCountDiv>
-			</CoinDiv>
 		);
 	});
 
