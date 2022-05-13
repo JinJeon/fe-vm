@@ -15,7 +15,7 @@ const ItemsDiv = styled.div`
 	width: 400px;
 	height: 100%;
 	${({ theme: { colors } }) => css`
-		border-radius: 10px;
+		border-radius: 20px;
 		border: 2px solid ${colors.black};
 	`}
 `;
@@ -30,7 +30,7 @@ const ItemDiv = styled.div`
 		!empty &&
 		css`
 			border: 2px solid ${colors.black};
-			border-radius: 10px;
+			border-radius: 20px;
 		`};
 
 	${({ theme: { colors }, isSelectable }) =>
@@ -82,7 +82,7 @@ const TakingOutDiv = styled.div`
 		padding: 10px;
 		margin: 10px;
 		border: solid 2px ${colors.black};
-		border-radius: 10px;
+		border-radius: 20px;
 		background-color: ${colors.black};
 	}
 	`}

@@ -8,7 +8,7 @@ const WalletDiv = styled.div`
 		margin-top: 50px;
 		padding: 20px;
 		border: 2px solid ${colors.black};
-		border-radius: 10px;
+		border-radius: 20px;
 	`}
 `;
 
@@ -24,7 +24,7 @@ const CoinDiv = styled.div`
 			height: 70px;
 			line-height: 70px;
 			border: 2px solid ${colors.black};
-			border-radius: 10px;
+			border-radius: 20px;
 			margin: 5px;
 		}
 	`}

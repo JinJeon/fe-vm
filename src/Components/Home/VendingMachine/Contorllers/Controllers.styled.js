@@ -12,11 +12,11 @@ const ControllersDiv = styled.div`
 
 	${({ theme: { colors } }) => css`
 		border: 2px solid ${colors.black};
-		border-radius: 10px;
+		border-radius: 20px;
 
 		> div {
 			margin: 15px;
-			border-radius: 10px;
+			border-radius: 20px;
 			background-color: ${colors.yellow};
 		}
 	`}

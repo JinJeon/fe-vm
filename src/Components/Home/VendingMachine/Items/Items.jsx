@@ -23,6 +23,7 @@ const Items = () => {
 
 	const getList = (itemsArray) => {
 		const list = itemsArray.map((item) => <Item key={item.id} item={item} />);
+
 		if (list.length % lineCount) {
 			list.push(<ItemDiv key={itemsArray.length} empty={true} />);
 		}

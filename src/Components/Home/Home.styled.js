@@ -10,7 +10,7 @@ const NavigatorDiv = styled.div`
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-around;
-		border-radius: ${distance.small};
+		border-radius: 20px;
 		padding: ${distance.small};
 		border: solid 2px ${colors.black};
 		width: 200px;
