@@ -26,7 +26,7 @@ const Coin = ({ coin }) => {
 		setCoins(newCoins);
 		messagesDispatch({
 			type: MINUS,
-			contents: { [price]: -1 },
+			contents: { [price]: 1 },
 		});
 	};
 
