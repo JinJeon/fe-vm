@@ -12,8 +12,8 @@ import { CoinDiv, CoinCountDiv, CoinPriceDiv } from './Wallet.styled';
 
 const Coin = ({ coin }) => {
 	const { id, price, count } = coin;
-	const { coins, setCoins, setShowedMoney } = useContext(CoinsContext);
-	const { money, setMoney } = useContext(MoneyContext);
+	const { coins, setCoins } = useContext(CoinsContext);
+	const { money, setMoney, setShowedMoney } = useContext(MoneyContext);
 	const messagesDispatch = useContext(MessagesDispatchContext);
 
 	const handleClickCount = () => {
