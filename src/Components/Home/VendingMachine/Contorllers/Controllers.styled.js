@@ -17,6 +17,7 @@ const ControllersDiv = styled.div`
 		> div {
 			margin: 15px;
 			border-radius: 20px;
+			border: 2px solid ${colors.black};
 			background-color: ${colors.yellow};
 		}
 	`}

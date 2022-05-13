@@ -6,7 +6,7 @@ const VendingMachineDiv = styled.div`
 	${({ theme: colors }) => css`
 		display: flex;
 		justify-content: space-between;
-		background-color: ${colors.yellow};
+		/* background-color: ${colors.yellow}; */
 		margin: 0 auto;
 		margin-top: 40px;
 		width: 900px;

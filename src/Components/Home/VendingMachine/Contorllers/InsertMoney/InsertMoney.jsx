@@ -88,7 +88,7 @@ const InsertMoney = () => {
 				{UNIT}
 			</InsertMoneyDiv>
 			<WithdrawDiv onClick={handleClick} isTakingOut={isTakingOut}>
-				반납
+				{isTakingOut ? '상품이 나오는 중' : '반납'}
 			</WithdrawDiv>
 		</>
 	);

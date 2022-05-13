@@ -1,9 +1,6 @@
 import styled, { css } from 'styled-components';
 
 const InsertMoneyDiv = styled.div`
-	${({ theme: { colors }, isTakingOut }) => css`
-		color: ${isTakingOut && colors.white};
-	`}
 	padding: 20px;
 	font-size: 20px;
 	display: flex;
@@ -22,11 +19,10 @@ const InsertMoneyValue = styled.input`
 `;
 
 const WithdrawDiv = styled.div`
-	${({ theme: { colors }, isTakingOut }) => css`
+	${({ isTakingOut }) => css`
 		cursor: ${!isTakingOut ? 'pointer' : 'not-allowed'};
 		padding: 20px;
 		font-size: 20px;
-		color: ${isTakingOut && colors.white};
 	`}
 `;
 
