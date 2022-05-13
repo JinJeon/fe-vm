@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import {
 	CoinsContext,
-	ShowedMoneyContext,
 	MoneyContext,
 	MessagesDispatchContext,
 } from 'Components/Contexts';
@@ -13,8 +12,7 @@ import { CoinDiv, CoinCountDiv, CoinPriceDiv } from './Wallet.styled';
 
 const Coin = ({ coin }) => {
 	const { id, price, count } = coin;
-	const { coins, setCoins } = useContext(CoinsContext);
-	const { setShowedMoney } = useContext(ShowedMoneyContext);
+	const { coins, setCoins, setShowedMoney } = useContext(CoinsContext);
 	const { money, setMoney } = useContext(MoneyContext);
 	const messagesDispatch = useContext(MessagesDispatchContext);
 

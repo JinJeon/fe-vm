@@ -9,7 +9,6 @@ import {
 import {
 	CoinsContext,
 	MoneyContext,
-	ShowedMoneyContext,
 	IsTakingOutContext,
 	MessagesDispatchContext,
 } from 'Components/Contexts';
@@ -21,8 +20,8 @@ import Btns from './Btns';
 
 const InsertMoney = () => {
 	const { coins, coinsSum } = useContext(CoinsContext);
-	const { showedMoney, setShowedMoney } = useContext(ShowedMoneyContext);
-	const { money, setMoney } = useContext(MoneyContext);
+	const { money, setMoney, showedMoney, setShowedMoney } =
+		useContext(MoneyContext);
 	const { isTakingOut } = useContext(IsTakingOutContext);
 	const messagesDispatch = useContext(MessagesDispatchContext);
 
