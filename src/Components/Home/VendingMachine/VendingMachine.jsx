@@ -8,7 +8,7 @@ const VendingMachineDiv = styled.div`
 	margin: 0 auto;
 	margin-top: 40px;
 	width: 900px;
-	height: 770px;
+	height: 710px;
 	border-radius: 20px;
 `;
 

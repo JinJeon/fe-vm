@@ -25,7 +25,7 @@ const ItemDiv = styled.button`
 	align-content: flex-start;
 	flex-basis: 40%;
 	font-size: 18px;
-	line-height: 120%;
+	line-height: 110%;
 	font-family: 'IBM Plex Sans KR', sans-serif;
 	font-weight: 500;
 	margin: 10px;
