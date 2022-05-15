@@ -40,19 +40,19 @@ const CoinPriceDiv = styled.div`
 	`}
 `;
 
-const CoinCountDiv = styled.button`
-	${({ theme: { colors } }) => css`
+const CoinCountBtn = styled.button`
+	${({ theme: { colors }, count }) => css`
 		border-radius: 20px;
 		width: 100px;
 		height: 75px;
 		margin: 5px;
 		cursor: pointer;
-		border: solid 2px ${colors.green};
-		color: ${colors.green};
+		border: solid 2px ${count ? colors.green : colors.red};
+		color: ${count ? colors.green : colors.red};
 		font-size: 20px;
 		font-family: 'IBM Plex Sans KR', sans-serif;
 		:hover {
-			background-color: ${colors.green};
+			background-color: ${count ? colors.green : colors.red};
 			color: ${colors.white};
 		}
 	`}
@@ -94,7 +94,7 @@ const WalletMessageDiv = styled.div`
 export {
 	WalletDiv,
 	CoinDiv,
-	CoinCountDiv,
+	CoinCountBtn,
 	CoinPriceDiv,
 	CoinsSumDiv,
 	WalletMessagesDiv,
