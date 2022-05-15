@@ -21,7 +21,7 @@ import ControllerBtns from './ControllerBtns';
 
 const InsertMoney = () => {
 	const { coins, coinsSum, setCoins } = useContext(CoinsContext);
-	const { money, setMoney, showedMoney, setShowedMoney } =
+	const { money, setMoneyStates, showedMoney, setShowedMoney } =
 		useContext(MoneyContext);
 	const { isTakingOut } = useContext(IsTakingOutContext);
 	const messagesDispatch = useContext(MessagesDispatchContext);
@@ -54,8 +54,7 @@ const InsertMoney = () => {
 		);
 		const totalMoney = money + calculatedMoney;
 
-		setMoney(totalMoney);
-		setShowedMoney(totalMoney);
+		setMoneyStates(totalMoney);
 		setCoins(newCoins);
 		messagesDispatch({
 			type: calculatingType,
