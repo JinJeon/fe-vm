@@ -25,26 +25,34 @@ const CoinDiv = styled.div`
 	:not(:last-child) {
 		margin-bottom: 2px;
 	}
-	> div {
-		width: 90px;
-		height: 70px;
-		line-height: 70px;
-		border-radius: 20px;
-		margin: 5px;
-	}
 `;
 
 const CoinPriceDiv = styled.div`
 	${({ theme: { colors } }) => css`
+		box-sizing: border-box;
 		border: 2px solid ${colors.black};
+		width: 100px;
+		height: 80px;
+		line-height: 80px;
+		border-radius: 20px;
+		margin: 5px;
+		font-size: 18px;
 	`}
 `;
 
-const CoinCountDiv = styled.div`
+const CoinCountDiv = styled.button`
 	${({ theme: { colors } }) => css`
+		width: 100px;
+		height: 100px;
+		border-radius: 20px;
+		width: 100px;
+		height: 80px;
+		margin: 5px;
 		cursor: pointer;
 		border: solid 2px ${colors.green};
 		color: ${colors.green};
+		font-size: 18px;
+		font-family: 'IBM Plex Sans KR', sans-serif;
 		:hover {
 			background-color: ${colors.green};
 			color: ${colors.white};

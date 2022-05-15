@@ -33,7 +33,9 @@ const Coin = ({ coin }) => {
 	return (
 		<CoinDiv>
 			<CoinPriceDiv>{getPriceType(price, true)}</CoinPriceDiv>
-			<CoinCountDiv onClick={handleClickCount}>{count}개</CoinCountDiv>
+			<CoinCountDiv disabled={!count} onClick={handleClickCount}>
+				{count}개
+			</CoinCountDiv>
 		</CoinDiv>
 	);
 };
