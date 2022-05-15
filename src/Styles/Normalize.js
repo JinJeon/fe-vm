@@ -5,7 +5,7 @@ const Normalize = createGlobalStyle`
 		css`
 			color: ${colors.black};
 		`}
-    
+
   .App {
     width: 1000px;
     margin: 0 auto;

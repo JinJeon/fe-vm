@@ -22,12 +22,12 @@ const items = [
 
 const coins = [
 	{ id: 0, price: 10, count: 103 },
-	{ id: 1, price: 50, count: 2 },
+	{ id: 1, price: 50, count: 789 },
 	{ id: 2, price: 100, count: 109 },
-	{ id: 3, price: 500, count: 5 },
+	{ id: 3, price: 500, count: 244 },
 	{ id: 4, price: 1000, count: 100 },
 	{ id: 5, price: 5000, count: 32 },
-	{ id: 6, price: 10000, count: 187 },
+	{ id: 6, price: 10000, count: 1007 },
 ];
 
 export { items, coins };
