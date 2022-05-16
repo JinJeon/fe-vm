@@ -8,7 +8,7 @@ import {
 
 import { getPriceType } from 'Util/util';
 import { MINUS } from 'Components/Common/constant';
-import { CoinDiv, CoinCountBtn, CoinPriceDiv } from './Wallet.styled';
+import { CoinDiv, CoinCountBtn, CoinPriceDiv } from './Coin.styled';
 
 const Coin = ({ coin }) => {
 	const { id, price, count } = coin;
