@@ -35,19 +35,9 @@ const InsertMoney = () => {
 		return calculatingOptions;
 	};
 
-	const calculateAndReportMoney = (isZero) => {
-		if (isZero && !showedMoney) return;
-
-		const diffWithInsert = isZero ? -money : showedMoney - money;
-		const isMoneyInWallet = coinsSum >= diffWithInsert; // is inserted money much larger than wallet
+	const changeMoney = (diffWithInsert) => {
 		const { calculateMoney, calculatingType } =
 			getCalculatingOptions(diffWithInsert);
-
-		if (!isMoneyInWallet) {
-			setShowedMoney(money);
-			return;
-		}
-
 		const { calculatedMoney, changedCoins, newCoins } = calculateMoney(
 			coins,
 			diffWithInsert
@@ -62,6 +52,16 @@ const InsertMoney = () => {
 		});
 	};
 
+	const checkInsertedMoney = (isZero) => {
+		if (!money && !showedMoney) return; // already money is zero
+
+		let diffWithInsert = showedMoney - money;
+		if (isZero) diffWithInsert = -money;
+		if (coinsSum < diffWithInsert) diffWithInsert = coinsSum;
+
+		changeMoney(diffWithInsert);
+	};
+
 	const handleInput = ({ target: { value } }) => {
 		const numberFilter = /^[0-9]+$|^$/;
 		const valueNumber = Number(value.replaceAll(',', ''));
@@ -70,10 +70,10 @@ const InsertMoney = () => {
 
 	const handleKeyUp = ({ key }) => {
 		const isEnterKey = key === ENTER;
-		if (isEnterKey) calculateAndReportMoney();
+		if (isEnterKey) checkInsertedMoney();
 	};
 
-	useDebounce(() => calculateAndReportMoney(true), autoWithdrawTime);
+	useDebounce(() => checkInsertedMoney(true), autoWithdrawTime);
 
 	return (
 		<>
@@ -92,7 +92,7 @@ const InsertMoney = () => {
 			</InsertMoneyDiv>
 			<ControllerBtns
 				isTakingOut={isTakingOut}
-				calculateAndReportMoney={calculateAndReportMoney}
+				checkInsertedMoney={checkInsertedMoney}
 			/>
 		</>
 	);
