@@ -50,9 +50,20 @@ const font = {
 		'font-size': '20px',
 	},
 
+	large: {
+		'font-size': '30px',
+	},
+
 	xLarge: {
 		'font-size': '50px',
 		'font-weight': '900',
+	},
+};
+
+const transition = {
+	main: {
+		'transition-property': 'all',
+		'transition-duration': '0.3s',
 	},
 };
 
@@ -79,7 +90,7 @@ const getStyledButtonColor = (
 		':hover': isHover && {
 			color: colors[mainColor],
 			'background-color': colors[subColor],
-			border: `${border[borderSize]} ${colors[mainColor]}`,
+			border: `${!isReversed && `${border[borderSize]} ${colors[mainColor]}`}`,
 		},
 	};
 };
@@ -91,6 +102,7 @@ const theme = {
 	width,
 	height,
 	font,
+	transition,
 	getBorder,
 	getStyledButtonColor,
 };
