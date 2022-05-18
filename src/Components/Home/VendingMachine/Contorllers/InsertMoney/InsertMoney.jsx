@@ -10,7 +10,7 @@ import {
 } from 'Components/Contexts';
 import { getPriceType } from 'Util/util';
 import useDebounce from 'Util/hooks';
-import { spendMoney, withdrawMoney } from 'Util/controlMoney';
+import calculateMoney from 'Util/controlMoney';
 import { InsertMoneyDiv, InsertMoneyValue } from './InsertMoney.styled';
 import ControllerBtns from './ControllerBtns';
 
@@ -24,19 +24,10 @@ const InsertMoney = () => {
 	const { isTakingOut } = useContext(IsTakingOutContext);
 	const messagesDispatch = useContext(MessagesDispatchContext);
 
-	const getCalculatingOptions = (diffWithInsert) => {
-		const isSpending = diffWithInsert >= 0;
-		const calculatingOptions = {
-			calculateMoney: isSpending ? spendMoney : withdrawMoney,
-			calculatingType: isSpending ? MINUS : PLUS,
-		};
-		return calculatingOptions;
-	};
-
 	const changeMoney = (diffWithInsert) => {
-		const { calculateMoney, calculatingType } =
-			getCalculatingOptions(diffWithInsert);
+		const calculatingType = diffWithInsert >= 0 ? MINUS : PLUS;
 		const { calculatedMoney, changedCoins, newCoins } = calculateMoney(
+			calculatingType,
 			coins,
 			diffWithInsert
 		);
