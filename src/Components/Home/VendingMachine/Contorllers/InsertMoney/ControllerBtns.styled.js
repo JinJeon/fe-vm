@@ -9,7 +9,6 @@ const ControllerBtn = styled.button`
 	${({
 		theme: { colors, getBorder, font, distance, border },
 		isTakingOut,
-		color,
 	}) => css`
 		${getBorder('main', 'black', 'main')};
 		${font.medium};
@@ -17,9 +16,19 @@ const ControllerBtn = styled.button`
 		margin: ${distance.small};
 		cursor: ${!isTakingOut ? 'pointer' : 'not-allowed'};
 		flex-basis: 50%;
-		background-color: ${colors[color.main]};
-		:hover {
-			background-color: ${colors[color.sub]};
+
+		:first-child {
+			background-color: ${colors.lightGreen};
+			:hover {
+				background-color: ${colors.green};
+			}
+		}
+
+		:last-child {
+			background-color: ${colors.lightRed};
+			:hover {
+				background-color: ${colors.red};
+			}
 		}
 
 		${isTakingOut &&

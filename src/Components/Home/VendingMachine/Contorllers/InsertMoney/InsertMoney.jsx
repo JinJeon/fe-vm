@@ -1,12 +1,6 @@
 import { useContext } from 'react';
 
-import {
-	autoWithdrawTime,
-	MINUS,
-	PLUS,
-	UNIT,
-	ENTER,
-} from 'Components/Common/constant';
+import { MINUS, PLUS, UNIT } from 'Util/constant';
 import {
 	CoinsContext,
 	MoneyContext,
@@ -15,11 +9,14 @@ import {
 } from 'Components/Contexts';
 import { getPriceType } from 'Util/util';
 import useDebounce from 'Util/hooks';
-import { spendMoney, withdrawMoney } from 'Components/Common/controlMoney';
+import { spendMoney, withdrawMoney } from 'Util/controlMoney';
 import { InsertMoneyDiv, InsertMoneyValue } from './InsertMoney.styled';
 import ControllerBtns from './ControllerBtns';
 
 const InsertMoney = () => {
+	const AUTO_WITHDRAW_TIME = 5000;
+	const ENTER = 'Enter';
+
 	const { coins, coinsSum, setCoins } = useContext(CoinsContext);
 	const { money, setMoneyStates, showedMoney, setShowedMoney } =
 		useContext(MoneyContext);
@@ -73,7 +70,7 @@ const InsertMoney = () => {
 		if (isEnterKey) checkInsertedMoney();
 	};
 
-	useDebounce(() => checkInsertedMoney(true), autoWithdrawTime);
+	useDebounce(() => checkInsertedMoney(true), AUTO_WITHDRAW_TIME);
 
 	return (
 		<>
