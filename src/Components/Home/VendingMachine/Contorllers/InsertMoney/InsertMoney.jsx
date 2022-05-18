@@ -6,6 +6,7 @@ import {
 	MoneyContext,
 	IsTakingOutContext,
 	MessagesDispatchContext,
+	ShowedMoneyContext,
 } from 'Components/Contexts';
 import { getPriceType } from 'Util/util';
 import useDebounce from 'Util/hooks';
@@ -17,9 +18,9 @@ const InsertMoney = () => {
 	const AUTO_WITHDRAW_TIME = 5000;
 	const ENTER = 'Enter';
 
+	const { showedMoney, setShowedMoney } = useContext(ShowedMoneyContext);
 	const { coins, coinsSum, setCoins } = useContext(CoinsContext);
-	const { money, setMoneyStates, showedMoney, setShowedMoney } =
-		useContext(MoneyContext);
+	const { money, setMoneyStates } = useContext(MoneyContext);
 	const { isTakingOut } = useContext(IsTakingOutContext);
 	const messagesDispatch = useContext(MessagesDispatchContext);
 
