@@ -27,7 +27,7 @@ const width = {
 	navigator: '200px',
 	vm: '900px',
 	'vm-child': '400px',
-	coin: '105px',
+	coin: '95px',
 	wallet: '450px',
 	'wallet-child': '195px',
 };
@@ -36,6 +36,7 @@ const height = {
 	vm: '715px',
 	messages: '80px',
 	coin: '80px',
+	'wallet-btn': '90px',
 };
 
 const font = {

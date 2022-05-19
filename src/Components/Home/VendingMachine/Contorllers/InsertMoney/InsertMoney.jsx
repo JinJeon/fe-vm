@@ -69,6 +69,7 @@ const InsertMoney = () => {
 			<InsertMoneyDiv isTakingOut={isTakingOut}>
 				<InsertMoneyValue
 					type="text"
+					pattern="[0-9]*"
 					maxLength="11"
 					onInput={handleInput}
 					onPaste={handleInput}

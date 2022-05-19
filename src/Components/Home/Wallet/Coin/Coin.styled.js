@@ -11,7 +11,7 @@ const CoinDiv = styled.div`
 const CoinPriceDiv = styled.div`
 	${({ theme: { width, height, getBorder, font } }) => css`
 		${getBorder('main', 'black', 'main')};
-		${font.medium};
+		${font.small};
 		width: ${width.coin};
 		height: ${height.coin};
 		line-height: ${height.coin};
@@ -26,7 +26,7 @@ const CoinCountBtn = styled.button`
 		count,
 	}) => css`
 		${getStyledButtonColor(count ? 'green' : 'red', 'main', true, true)};
-		${font.medium};
+		${font.small};
 		border-radius: ${border.radius.main};
 		cursor: ${count ? 'pointer' : 'not-allowed'};
 		width: ${width.coin};
