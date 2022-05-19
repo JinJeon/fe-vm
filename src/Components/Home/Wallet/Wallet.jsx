@@ -5,8 +5,8 @@ import { CoinsContext } from 'Components/Contexts';
 import {
 	WalletDiv,
 	CoinsSumDiv,
-	WalletInsertAllBtnDiv,
-	WalletWithdrawAllBtnDiv,
+	WalletInsertAllBtn,
+	WalletWithdrawAllBtn,
 } from './Wallet.styled';
 import Coin from './Coin/Coin';
 import WalletMessages from './WalletMessages/WalletMessages';
@@ -25,8 +25,8 @@ const Wallet = () => {
 			<div>
 				<CoinsSumDiv>{getPriceType(coinsSum, true)}</CoinsSumDiv>
 				<WalletMessages />
-				<WalletWithdrawAllBtnDiv>{WITHDRAW_ALL}</WalletWithdrawAllBtnDiv>
-				<WalletInsertAllBtnDiv>{INSERT_ALL}</WalletInsertAllBtnDiv>
+				<WalletWithdrawAllBtn>{WITHDRAW_ALL}</WalletWithdrawAllBtn>
+				<WalletInsertAllBtn>{INSERT_ALL}</WalletInsertAllBtn>
 			</div>
 		</WalletDiv>
 	);
