@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 
+import useDebounce from 'Util/hooks';
 import calculateMoney from 'Util/controlMoney';
 import { MINUS, PLUS } from 'Util/constant';
 import { CoinsContext } from './CoinsContext';
@@ -16,6 +17,7 @@ const MoneyContext = createContext({});
 const ShowedMoneyContext = createContext({});
 
 const MoneyProvider = ({ inner }) => {
+	const AUTO_WITHDRAW_TIME = 5000;
 	const [money, setMoney] = useState(0);
 	const [showedMoney, setShowedMoney] = useState(0);
 	const { coins, setCoins, coinsSum } = useContext(CoinsContext);
@@ -33,7 +35,8 @@ const MoneyProvider = ({ inner }) => {
 			const newCoins = [...coins];
 			newCoins[id].count -= 1;
 
-			setMoneyStates(totalMoney);
+			setMoney(totalMoney);
+			setShowedMoney(totalMoney);
 			setCoins(newCoins);
 			messagesDispatch({
 				type: MINUS,
@@ -77,6 +80,8 @@ const MoneyProvider = ({ inner }) => {
 	const showedMoneyValue = useMemo(() => {
 		return { showedMoney, setShowedMoney };
 	}, [showedMoney]);
+
+	useDebounce(() => checkInsertedMoney(true), AUTO_WITHDRAW_TIME);
 
 	return (
 		<MoneyContext.Provider value={moneyValue}>

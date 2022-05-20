@@ -7,12 +7,10 @@ import {
 	ShowedMoneyContext,
 } from 'Components/Contexts';
 import { getPriceType } from 'Util/util';
-import useDebounce from 'Util/hooks';
 import { InsertMoneyDiv, InsertMoneyValue } from './InsertMoney.styled';
 import ControllerBtns from './ControllerBtns';
 
 const InsertMoney = () => {
-	const AUTO_WITHDRAW_TIME = 5000;
 	const ENTER = 'Enter';
 
 	const { showedMoney, setShowedMoney } = useContext(ShowedMoneyContext);
@@ -31,8 +29,6 @@ const InsertMoney = () => {
 
 		checkInsertedMoney();
 	};
-
-	useDebounce(() => checkInsertedMoney(true), AUTO_WITHDRAW_TIME);
 
 	return (
 		<>
