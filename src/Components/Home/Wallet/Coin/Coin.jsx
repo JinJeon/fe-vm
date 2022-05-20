@@ -1,38 +1,22 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import {
-	CoinsContext,
-	MoneyContext,
-	MessagesDispatchContext,
-} from 'Components/Contexts';
+import { MoneyContext } from 'Components/Contexts';
 
 import { getPriceType } from 'Util/util';
-import { MINUS } from 'Util/constant';
 import { CoinDiv, CoinCountBtn, CoinPriceDiv } from './Coin.styled';
 
 const Coin = ({ coin }) => {
-	const { id, price, count } = coin;
-	const { coins, setCoins } = useContext(CoinsContext);
-	const { money, setMoneyStates } = useContext(MoneyContext);
-	const messagesDispatch = useContext(MessagesDispatchContext);
-
-	const handleClickCount = () => {
-		const totalMoney = money + price;
-		const newCoins = [...coins];
-		newCoins[id].count -= 1;
-
-		setMoneyStates(totalMoney);
-		setCoins(newCoins);
-		messagesDispatch({
-			type: MINUS,
-			contents: { [price]: 1 },
-		});
-	};
+	const { price, count } = coin;
+	const { checkInsertedCoin } = useContext(MoneyContext);
 
 	return (
 		<CoinDiv>
 			<CoinPriceDiv>{getPriceType(price, true)}</CoinPriceDiv>
-			<CoinCountBtn disabled={!count} onClick={handleClickCount} count={count}>
+			<CoinCountBtn
+				disabled={!count}
+				onClick={() => checkInsertedCoin(coin)}
+				count={count}
+			>
 				{count}개
 			</CoinCountBtn>
 		</CoinDiv>

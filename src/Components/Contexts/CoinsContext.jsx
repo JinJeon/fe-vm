@@ -13,7 +13,7 @@ const CoinsProvider = ({ inner }) => {
 		setCoins(coinsData);
 	};
 
-	const contextInfo = useMemo(() => {
+	const coinsValue = useMemo(() => {
 		const coinsSum = coins.reduce((pre, post) => {
 			return pre + post.price * post.count;
 		}, 0);
@@ -29,7 +29,7 @@ const CoinsProvider = ({ inner }) => {
 	}, []);
 
 	return (
-		<CoinsContext.Provider value={contextInfo}>{inner}</CoinsContext.Provider>
+		<CoinsContext.Provider value={coinsValue}>{inner}</CoinsContext.Provider>
 	);
 };
 

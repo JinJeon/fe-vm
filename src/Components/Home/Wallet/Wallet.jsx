@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { getPriceType } from 'Util/util';
-import { CoinsContext } from 'Components/Contexts';
+import { CoinsContext, MoneyContext } from 'Components/Contexts';
 import {
 	WalletDiv,
 	CoinsSumDiv,
@@ -16,6 +16,7 @@ const Wallet = () => {
 	const INSERT_ALL = '전액 투입';
 
 	const { coins, coinsSum } = useContext(CoinsContext);
+	const { checkInsertedMoney } = useContext(MoneyContext);
 
 	const coinsList = coins.map((coin) => <Coin key={coin.id} coin={coin} />);
 
@@ -25,8 +26,12 @@ const Wallet = () => {
 			<div>
 				<CoinsSumDiv>{getPriceType(coinsSum, true)}</CoinsSumDiv>
 				<WalletMessages />
-				<WalletWithdrawAllBtn>{WITHDRAW_ALL}</WalletWithdrawAllBtn>
-				<WalletInsertAllBtn>{INSERT_ALL}</WalletInsertAllBtn>
+				<WalletWithdrawAllBtn onClick={() => checkInsertedMoney(true)}>
+					{WITHDRAW_ALL}
+				</WalletWithdrawAllBtn>
+				<WalletInsertAllBtn onClick={() => checkInsertedMoney(false, true)}>
+					{INSERT_ALL}
+				</WalletInsertAllBtn>
 			</div>
 		</WalletDiv>
 	);

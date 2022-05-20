@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 
+import { MoneyContext } from 'Components/Contexts';
 import { ControllerBtn, ControllerBtnsDiv } from './ControllerBtns.styled';
 
-const ControllerBtns = ({ isTakingOut, checkInsertedMoney }) => {
+const ControllerBtns = ({ isTakingOut }) => {
+	const { checkInsertedMoney } = useContext(MoneyContext);
 	const INSERT = '투입';
 	const WITHDRAW = '반납';
 
@@ -36,7 +39,6 @@ const ControllerBtns = ({ isTakingOut, checkInsertedMoney }) => {
 
 ControllerBtns.propTypes = {
 	isTakingOut: PropTypes.bool.isRequired,
-	checkInsertedMoney: PropTypes.func.isRequired,
 }.isRequired;
 
 export default ControllerBtns;

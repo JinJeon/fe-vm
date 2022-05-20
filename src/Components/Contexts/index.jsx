@@ -15,11 +15,11 @@ import {
 import { IsTakingOutContext, IsTakingOutProvider } from './IsTakingOutContext';
 
 const providersArr = [
-	ItemsProvider,
+	MoneyProvider,
 	CoinsProvider,
 	MessagesProvider,
-	MoneyProvider,
 	IsTakingOutProvider,
+	ItemsProvider,
 ];
 
 const getContextsProvider =

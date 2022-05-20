@@ -35,7 +35,7 @@ const getDefaultInfo = {
 };
 
 const calculateMoney = (type, coins, difference) => {
-	const newCoins = [...coins];
+	const newCoins = coins ? [...coins] : [];
 	const changedCoins = {}; // like {10: -3, 1000: -2, 10000: -23}
 	const defaultInfo = getDefaultInfo[type](newCoins, difference);
 	const { processCount, getCalculatedMoney } = defaultInfo;
