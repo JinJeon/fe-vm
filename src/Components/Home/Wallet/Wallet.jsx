@@ -1,39 +1,32 @@
 import { useContext } from 'react';
 
 import { getPriceType } from 'Util/util';
-import { CoinsContext, MessagesContext } from 'Components/Contexts';
+import { CoinsContext } from 'Components/Contexts';
 import {
 	WalletDiv,
 	CoinsSumDiv,
-	WalletMessagesDiv,
-	WalletMessageDiv,
+	WalletInsertAllBtn,
+	WalletWithdrawAllBtn,
 } from './Wallet.styled';
 import Coin from './Coin/Coin';
+import WalletMessages from './WalletMessages/WalletMessages';
 
 const Wallet = () => {
+	const WITHDRAW_ALL = '전액 반납';
+	const INSERT_ALL = '전액 투입';
+
 	const { coins, coinsSum } = useContext(CoinsContext);
-	const messages = useContext(MessagesContext);
 
 	const coinsList = coins.map((coin) => <Coin key={coin.id} coin={coin} />);
-
-	const WalletMessagesList = messages.map(({ id, time, totalPrice }) => {
-		const priceSign = totalPrice > 0 ? '+' : '-';
-		const totalPriceByType = getPriceType(Math.abs(totalPrice));
-		return (
-			totalPrice && (
-				<WalletMessageDiv key={id}>
-					{`[${time}] ${priceSign} ${totalPriceByType}`}
-				</WalletMessageDiv>
-			)
-		);
-	});
 
 	return (
 		<WalletDiv>
 			<div>{coinsList}</div>
 			<div>
 				<CoinsSumDiv>{getPriceType(coinsSum, true)}</CoinsSumDiv>
-				<WalletMessagesDiv>{WalletMessagesList}</WalletMessagesDiv>
+				<WalletMessages />
+				<WalletWithdrawAllBtn>{WITHDRAW_ALL}</WalletWithdrawAllBtn>
+				<WalletInsertAllBtn>{INSERT_ALL}</WalletInsertAllBtn>
 			</div>
 		</WalletDiv>
 	);

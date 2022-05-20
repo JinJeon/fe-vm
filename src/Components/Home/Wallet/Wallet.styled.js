@@ -49,4 +49,30 @@ const WalletMessageDiv = styled.div`
 	margin-top: 5px;
 `;
 
-export { WalletDiv, CoinsSumDiv, WalletMessagesDiv, WalletMessageDiv };
+const WalletBtnDesign = (main, sub) => styled.button`
+	${({ theme: { getBorder, distance, width, height, font, colors } }) => css`
+		${font.medium};
+		${getBorder('main', 'black', 'main')};
+		margin-top: ${distance.large};
+		width: ${width['wallet-child']};
+		height: ${height['wallet-btn']};
+		line-height: ${height['wallet-btn']};
+		background-color: ${colors[main]};
+		:hover {
+			background-color: ${colors[sub]};
+		}
+		box-sizing: border-box;
+	`}
+`;
+
+const WalletInsertAllBtn = WalletBtnDesign('lightGreen', 'green');
+const WalletWithdrawAllBtn = WalletBtnDesign('lightRed', 'red');
+
+export {
+	WalletDiv,
+	CoinsSumDiv,
+	WalletMessagesDiv,
+	WalletMessageDiv,
+	WalletInsertAllBtn,
+	WalletWithdrawAllBtn,
+};

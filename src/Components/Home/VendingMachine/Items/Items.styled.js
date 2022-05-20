@@ -82,6 +82,7 @@ const TakingOutDiv = styled.div`
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		box-shadow: 0px 0px 40px ${colors.black};
 	}
 	`}
 

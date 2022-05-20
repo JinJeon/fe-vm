@@ -6,7 +6,7 @@ const HomeDiv = styled.div`
 
 const NavigatorDiv = styled.div`
 	${({ theme: { distance, getBorder, width } }) => css`
-		${getBorder('main', 'black', 'main')}
+		${getBorder('main', 'black', 'main')};
 		width: ${width.navigator};
 		padding: ${distance.small};
 		overflow: auto;
@@ -17,8 +17,9 @@ const NavigatorDiv = styled.div`
 `;
 
 const NavigatorListDiv = styled.div`
-	${({ theme: { getStyledButtonColor, distance, border } }) => css`
+	${({ theme: { getStyledButtonColor, distance, border, transition } }) => css`
 		${getStyledButtonColor('black', 'main', true, true)};
+		${transition.main};
 		padding: ${distance.small};
 		border-radius: ${border.radius.small};
 		cursor: pointer;

@@ -16,6 +16,7 @@ const Normalize = createGlobalStyle`
 				${transition.main};
 				color: ${colors.black};
 				line-height: 110%;
+				cursor: pointer;
 			}
 		`}
 
