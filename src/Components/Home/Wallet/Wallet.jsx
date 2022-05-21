@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { getPriceType } from 'Util/util';
-import { CoinsContext, MoneyContext } from 'Components/Contexts';
+import { CoinsContext, MoneyControlContext } from 'Components/Contexts';
 import {
 	WalletDiv,
 	CoinsSumDiv,
@@ -16,7 +16,7 @@ const Wallet = () => {
 	const INSERT_ALL = '전액 투입';
 
 	const { coins, coinsSum } = useContext(CoinsContext);
-	const { checkInsertedMoney } = useContext(MoneyContext);
+	const { checkInsertedMoney } = useContext(MoneyControlContext);
 
 	const coinsList = coins.map((coin) => <Coin key={coin.id} coin={coin} />);
 

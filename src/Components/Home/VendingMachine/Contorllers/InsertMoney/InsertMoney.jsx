@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { UNIT } from 'Util/constant';
 import {
-	MoneyContext,
+	MoneyControlContext,
 	IsTakingOutContext,
 	ShowedMoneyContext,
 } from 'Components/Contexts';
@@ -14,7 +14,7 @@ const InsertMoney = () => {
 	const ENTER = 'Enter';
 
 	const { showedMoney, setShowedMoney } = useContext(ShowedMoneyContext);
-	const { checkInsertedMoney } = useContext(MoneyContext);
+	const { checkInsertedMoney } = useContext(MoneyControlContext);
 	const { isTakingOut } = useContext(IsTakingOutContext);
 
 	const handleInput = ({ target: { value } }) => {

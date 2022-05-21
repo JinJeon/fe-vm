@@ -15,6 +15,7 @@ import { MessagesDispatchContext } from './MessagesContext';
 
 const MoneyContext = createContext({});
 const ShowedMoneyContext = createContext({});
+const MoneyControlContext = createContext({});
 
 const MoneyProvider = ({ inner }) => {
 	const AUTO_WITHDRAW_TIME = 5000;
@@ -50,7 +51,7 @@ const MoneyProvider = ({ inner }) => {
 		(isZero, isFull) => {
 			let diffWithInsert = isFull ? coinsSum : showedMoney - money;
 
-			if (!money && !showedMoney) return; // already money is zero
+			if (!money && !showedMoney && !isFull) return; // already money is zero
 			if (isZero) diffWithInsert = -money;
 			if (diffWithInsert >= coinsSum) diffWithInsert = coinsSum;
 
@@ -74,19 +75,25 @@ const MoneyProvider = ({ inner }) => {
 	);
 
 	const moneyValue = useMemo(() => {
-		return { money, setMoneyStates, checkInsertedMoney, checkInsertedCoin };
-	}, [money, checkInsertedMoney, checkInsertedCoin]);
+		return { money, setMoneyStates };
+	}, [money]);
 
 	const showedMoneyValue = useMemo(() => {
 		return { showedMoney, setShowedMoney };
 	}, [showedMoney]);
+
+	const moneyControlValue = useMemo(() => {
+		return { checkInsertedMoney, checkInsertedCoin };
+	}, [checkInsertedMoney, checkInsertedCoin]);
 
 	useDebounce(() => checkInsertedMoney(true), AUTO_WITHDRAW_TIME);
 
 	return (
 		<MoneyContext.Provider value={moneyValue}>
 			<ShowedMoneyContext.Provider value={showedMoneyValue}>
-				{inner}
+				<MoneyControlContext.Provider value={moneyControlValue}>
+					{inner}
+				</MoneyControlContext.Provider>
 			</ShowedMoneyContext.Provider>
 		</MoneyContext.Provider>
 	);
@@ -96,4 +103,4 @@ MoneyProvider.propTypes = {
 	inner: PropTypes.node.isRequired,
 };
 
-export { MoneyContext, MoneyProvider, ShowedMoneyContext };
+export { MoneyContext, MoneyProvider, ShowedMoneyContext, MoneyControlContext };

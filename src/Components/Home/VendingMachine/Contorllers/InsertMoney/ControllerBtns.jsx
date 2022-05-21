@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { MoneyContext } from 'Components/Contexts';
+import { MoneyControlContext } from 'Components/Contexts';
 import { ControllerBtn, ControllerBtnsDiv } from './ControllerBtns.styled';
 
 const ControllerBtns = ({ isTakingOut }) => {
-	const { checkInsertedMoney } = useContext(MoneyContext);
+	const { checkInsertedMoney } = useContext(MoneyControlContext);
 	const INSERT = '투입';
 	const WITHDRAW = '반납';
 

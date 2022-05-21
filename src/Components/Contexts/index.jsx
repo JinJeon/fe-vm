@@ -10,6 +10,7 @@ import { ItemsContext, ItemsProvider } from './ItemsContext';
 import {
 	MoneyContext,
 	ShowedMoneyContext,
+	MoneyControlContext,
 	MoneyProvider,
 } from './moneyContext';
 import { IsTakingOutContext, IsTakingOutProvider } from './IsTakingOutContext';
@@ -37,6 +38,7 @@ export {
 	CoinsContext,
 	MessagesContext,
 	MoneyContext,
+	MoneyControlContext,
 	IsTakingOutContext,
 	MessagesDispatchContext,
 	ContextsProvider,

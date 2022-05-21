@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import { MoneyContext } from 'Components/Contexts';
+import { MoneyControlContext } from 'Components/Contexts';
 
 import { getPriceType } from 'Util/util';
 import { CoinDiv, CoinCountBtn, CoinPriceDiv } from './Coin.styled';
 
 const Coin = ({ coin }) => {
 	const { price, count } = coin;
-	const { checkInsertedCoin } = useContext(MoneyContext);
+	const { checkInsertedCoin } = useContext(MoneyControlContext);
 
 	return (
 		<CoinDiv>
