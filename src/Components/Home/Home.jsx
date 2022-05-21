@@ -4,10 +4,10 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { ContextsProvider } from 'Components/Contexts';
 import { NavigatorDiv, NavigatorListDiv, HomeDiv } from './Home.styled';
 
-const Home = () => {
-	const VENDINGMACHINE = '자판기';
-	const WALLET = '지갑';
+const VENDINGMACHINE = '자판기';
+const WALLET = '지갑';
 
+const Home = () => {
 	const { pathname } = useLocation();
 	const navigatorInfo = [
 		{ id: 0, to: '/', name: VENDINGMACHINE },

@@ -26,10 +26,14 @@ const Wallet = () => {
 			<div>
 				<CoinsSumDiv>{getPriceType(coinsSum, true)}</CoinsSumDiv>
 				<WalletMessages />
-				<WalletWithdrawAllBtn onClick={() => checkInsertedMoney(true)}>
+				<WalletWithdrawAllBtn
+					onClick={() => checkInsertedMoney({ isZero: true })}
+				>
 					{WITHDRAW_ALL}
 				</WalletWithdrawAllBtn>
-				<WalletInsertAllBtn onClick={() => checkInsertedMoney(false, true)}>
+				<WalletInsertAllBtn
+					onClick={() => checkInsertedMoney({ isFull: true })}
+				>
 					{INSERT_ALL}
 				</WalletInsertAllBtn>
 			</div>

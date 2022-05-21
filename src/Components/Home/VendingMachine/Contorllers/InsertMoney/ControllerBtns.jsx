@@ -24,7 +24,7 @@ const ControllerBtns = ({ isTakingOut }) => {
 		return (
 			<ControllerBtn
 				key={id}
-				onClick={() => checkInsertedMoney(isZero)}
+				onClick={() => checkInsertedMoney({ isZero })}
 				isTakingOut={isTakingOut}
 				disabled={isTakingOut}
 			>

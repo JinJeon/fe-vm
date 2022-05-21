@@ -48,10 +48,11 @@ const MoneyProvider = ({ inner }) => {
 	);
 
 	const checkInsertedMoney = useCallback(
-		(isZero, isFull) => {
-			let diffWithInsert = isFull ? coinsSum : showedMoney - money;
+		({ isZero, isFull } = false) => {
+			const isAlreadyZero = !money && !showedMoney && !isFull;
+			if (isAlreadyZero) return;
 
-			if (!money && !showedMoney && !isFull) return; // already money is zero
+			let diffWithInsert = isFull ? coinsSum : showedMoney - money;
 			if (isZero) diffWithInsert = -money;
 			if (diffWithInsert >= coinsSum) diffWithInsert = coinsSum;
 
