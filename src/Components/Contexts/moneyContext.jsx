@@ -30,8 +30,7 @@ const MoneyProvider = ({ inner }) => {
 	};
 
 	const checkInsertedCoin = useCallback(
-		(coin) => {
-			const { id, price } = coin;
+		({ id, price }) => {
 			const totalMoney = money + price;
 			const newCoins = [...coins];
 			newCoins[id].count -= 1;
